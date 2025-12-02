@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import cn from '../libs/Utils';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
   {
@@ -27,6 +27,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +67,35 @@ const Navbar = () => {
             </a>
           ))}
         </div>
-        {/* <button onClick={}><Menu size={24}/></button> */}
+        {/*mobile nav */}
+        <button
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className="md:hidden p-2 text-foreground z-50"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+        <div
+          className={cn(
+            'fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center',
+            'transition-all duration-300 md:hidden',
+            isMenuOpen
+              ? 'opacity-100 pointer-events-auto'
+              : 'opacity-0 pointer-events-none'
+          )}
+        >
+          <div className="flex flex-col space-y-8 text-xl ">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="mx-4 text-foreground/80 hover:text-primary transition-colors duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>{item.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </nav>
   );
