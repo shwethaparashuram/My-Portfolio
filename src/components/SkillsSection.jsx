@@ -46,7 +46,6 @@ const SkillsSection = () => {
   const filterSkills = skills.filter(
     (skill) => activeCategory === 'All' || skill.category === activeCategory
   );
-  console.log(filterSkills);
 
   return (
     <section
