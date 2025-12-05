@@ -30,7 +30,8 @@ const AboutMe = () => {
                 Get In Touch
               </a>
               <a
-                href=""
+                href="/Shwetha-Resume.pdf"
+                download="Shwetha-Resume.pdf"
                 className="px-6 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-primary-foreground transition-colors duration-300 text-center"
               >
                 Download Resume
